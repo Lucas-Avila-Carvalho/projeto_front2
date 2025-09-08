@@ -1,4 +1,7 @@
- const users = [{
+/* eslint-disable react/prop-types */
+import './App.css';
+
+const users = [{
   name: 'Hedy Lamarr',
   imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
   imageSize: 90,
@@ -17,14 +20,36 @@
   wiki: 'https://pt.wikipedia.org/wiki/Isaac_Newton',
 }];
 
- function Profile({ user }) {
+function App() {
+  console.info('render');
+  // const profiles = [];
+  //   <Profile key={users[0].name} user={users[0]} />,
+  //   <Profile key={users[1].name} user={users[1]} />,
+  //   <Profile key={users[2].name} user={users[2]} />
+  // ];
+  
+  // users.forEach((user) => {
+  //   profiles.push(<Profile key={user.name} user={user} />);
+  // });
+  
+  return (
+    <>
+      {users.map((user) =>
+          <Profile key={user.name} user={user} />
+      )}
+    </>
+  );
+}
+
+function Profile({ user }) {
   return <>
 
     <Title content={user.name} link={user.wiki} />
     <Avatar user={user} />
   </>
 }
- function Avatar({ user }) {
+
+function Avatar({ user }) {
   return (
     <a href={user.wiki}>
       <img
@@ -40,8 +65,10 @@
   );
 }
 
- function Title({ content, link }) {
+function Title({ content, link }) {
   return <a href={link}>
     <h1>{content}</h1>
   </a>
 }
+
+export default App;
