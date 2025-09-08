@@ -1,18 +1,17 @@
-import { useState } from 'react';
 import './style.css';
 
-export default function CardImc({ pessoa }) {
-  const peso = pessoa.peso;
-  const alt = pessoa.altura;
-  const calcImc = () => peso / alt ** 2;
-  const [imc, setImc] = useState(calcImc);
+export default function CardImc(props) {
+  const peso = props.pessoa.peso;
+  const alt = props.pessoa.altura;
+
+  const calcImc = () => (peso / alt ** 2).toFixed(2);
 
   return (
     <div className="imcCard">
-      <h1>{pessoa.peso}:</h1>
-      <p>Peso: {alt} m</p>
+      <h1>{props.pessoa.name}:</h1>
       <p>Altura: {alt} m</p>
-      <p>Imc: {imc.toFixed(2)}</p>
+      <p>Peso: {peso}</p>
+      <p>Imc: {calcImc()}</p>
     </div>
   );
 }
